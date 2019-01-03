@@ -32,11 +32,11 @@ RUN mkdir -p /opt/k8s-client && cd /opt/k8s-client \
     && git clone https://github.com/ahmetb/kubectx.git \
   && ln -s /opt/k8s-client/kubectx/kubectx /usr/local/bin/kkx \
   && ln -s /opt/k8s-client/kubectx/kubens /usr/local/bin/kkn \
-  && kubectl completion bash |sed "s^kubectl^kc^g" > /opt/kube-client/kubectl-completion.sh \
+  && kubectl completion bash |sed "s^kubectl^kc^g" > /opt/k8s-client/kubectl-completion.sh \
   && ls -lh /
 
-RUN echo "source /opt/kube-client/kube-ps1/kube-ps1.sh" >> /root/.bashrc \
-  && echo "source /opt/kube-client/kubectl-completion.sh" >> /root/.bashrc
+RUN echo "source /opt/k8s-client/kube-ps1/kube-ps1.sh" >> /root/.bashrc \
+  && echo "source /opt/k8s-client/kubectl-completion.sh" >> /root/.bashrc
 
 
 WORKDIR /config
