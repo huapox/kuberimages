@@ -18,7 +18,7 @@ ENV KUBE_LATEST_VERSION="v1.11.6"
 ENV HELM_VERSION="v2.9.1"
 
 ##kubectl && helm
-RUN apk add --no-cache ca-certificates bash git xterm tmux tree wget curl sed sudo shadow \
+RUN apk add --no-cache ca-certificates bash git xterm tmux tree wget curl sed sudo shadow bash-completion ncurses \
     && wget -q https://storage.googleapis.com/kubernetes-release/release/${KUBE_LATEST_VERSION}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl \
     && ln -s /usr/local/bin/kubectl /usr/local/bin/kc \
@@ -35,8 +35,13 @@ RUN mkdir -p /opt/k8s-client && cd /opt/k8s-client \
   && kubectl completion bash |sed "s^kubectl^kc^g" > /opt/k8s-client/kubectl-completion.sh \
   && ls -lh /
 
-RUN echo "source /opt/k8s-client/kube-ps1/kube-ps1.sh" >> /root/.bashrc \
-  && echo "source /opt/k8s-client/kubectl-completion.sh" >> /root/.bashrc
+RUN echo "source /usr/share/bash-completion/bash_completion" >> /root/.bashrc \
+  && echo "source /opt/k8s-client/kube-ps1/kube-ps1.sh" >> /root/.bashrc \
+  && echo "source /opt/k8s-client/kubectl-completion.sh" >> /root/.bashrc \
+  && echo "alias ll='ls -l'"  >> /root/.bashrc \
+  && echo "PS1='[\u@\h $(kube_ps1) \W]\$ '"  >> /root/.bashrc \
+
+
 
 
 WORKDIR /config
