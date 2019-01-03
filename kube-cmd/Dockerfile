@@ -27,7 +27,7 @@ RUN apk add --no-cache ca-certificates bash git xterm tmux tree wget curl sed su
     && ln -s /usr/local/bin/helm /usr/local/bin/hm
 
 
-RUN mkdir -p /opt/k8s-client && ce /opt/k8s-client \
+RUN mkdir -p /opt/k8s-client && cd /opt/k8s-client \
   && git clone https://github.com/jonmosco/kube-ps1.git \
     && git clone https://github.com/ahmetb/kubectx.git \
   && ln -s /opt/k8s-client/kubectx/kubectx /usr/local/bin/kkx \
