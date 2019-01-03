@@ -17,11 +17,26 @@ ENV KUBE_LATEST_VERSION="v1.11.6"
 # https://github.com/kubernetes/helm/releases
 ENV HELM_VERSION="v2.9.1"
 
+##kubectl && helm
 RUN apk add --no-cache ca-certificates bash git xterm tmux tree wget curl sed sudo shadow \
     && wget -q https://storage.googleapis.com/kubernetes-release/release/${KUBE_LATEST_VERSION}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl \
+    && ln -s /usr/local/bin/kubectl /usr/local/bin/kc
     && wget -q https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz -O - | tar -xzO linux-amd64/helm > /usr/local/bin/helm \
-    && chmod +x /usr/local/bin/helm
+    && chmod +x /usr/local/bin/helm \
+    && ln -s /usr/local/bin/helm /usr/local/bin/hm
+
+
+RUN mkdir -p /opt/k8s-client && ce /opt/k8s-client \
+  && git clone https://github.com/jonmosco/kube-ps1.git \
+    && git clone https://github.com/ahmetb/kubectx.git \
+  && ln -s /opt/k8s-client/kubectx/kubectx /usr/local/bin/kkx \
+  && ln -s /opt/k8s-client/kubectx/kubens /usr/local/bin/kkn \
+  && kubectl completion bash |sed "s^kubectl^kc^g" > /opt/kube-client/kubectl-completion.sh
+
+RUN echo "source /opt/kube-client/kube-ps1/kube-ps1.sh" >> /root/.bashrc \
+  && echo "source /opt/kube-client/kubectl-completion.sh" >> /root/.bashrc
+
 
 WORKDIR /config
 
