@@ -39,7 +39,7 @@ RUN echo "source /usr/share/bash-completion/bash_completion" >> /root/.bashrc \
   && echo "source /opt/k8s-client/kube-ps1/kube-ps1.sh" >> /root/.bashrc \
   && echo "source /opt/k8s-client/kubectl-completion.sh" >> /root/.bashrc \
   && echo "alias ll='ls -l'"  >> /root/.bashrc \
-  && echo "PS1='[\u@\h \$(kube_ps1) \W]\$ '"  >> /root/.bashrc \
+  && echo "PS1='[\u@\h \$(kube_ps1) \W]\$ '"  >> /root/.bashrc
 
 #RUN cd /bin && mv sh sh00 && ln -s bash sh
 
