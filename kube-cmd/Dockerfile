@@ -41,9 +41,9 @@ RUN echo "source /usr/share/bash-completion/bash_completion" >> /root/.bashrc \
   && echo "alias ll='ls -l'"  >> /root/.bashrc \
   && echo "PS1='[\u@\h \$(kube_ps1) \W]\$ '"  >> /root/.bashrc \
 
-RUN cd /bin && mv sh sh00 && ln -s bash sh
+#RUN cd /bin && mv sh sh00 && ln -s bash sh
 
 
-WORKDIR /config
+WORKDIR /root
 
 CMD bash
