@@ -4,7 +4,10 @@
 #apk add bash xterm tmux screen tree wget curl tzdata sed sudo shadow openssh |grep OK
 apk add bash xterm tmux tree wget curl sed sudo shadow |grep OK
 
-mkdir -p /down/{bin,cni/bin,cnf}
+##{bin,cnf,cni/bin} err
+mkdir -p /down/bin
+mkdir -p /down/cni/bin
+mkdir -p /down/cnf
 cd /down
 
 CNI_VERSION="v0.6.0"  #CNI v0.7.4
