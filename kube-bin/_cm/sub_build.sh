@@ -23,6 +23,7 @@ curl -L "https://github.com/kubernetes-incubator/cri-tools/releases/download/${C
 RELEASE=v1.11.6
 curl -L --remote-name-all https://storage.googleapis.com/kubernetes-release/release/${RELEASE}/bin/linux/amd64/{kubeadm,kubelet,kubectl}
 chmod +x kube*
+mv kube* bin/
 
 RELEASE=v1.11.6
 #mkdir -p /etc/systemd/system/kubelet.service.d
