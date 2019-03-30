@@ -24,7 +24,9 @@ RUN apk add --no-cache ca-certificates bash git xterm tmux tree wget curl sed su
     && ln -s /usr/local/bin/kubectl /usr/local/bin/kc \
     && wget -q https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz -O - | tar -xzO linux-amd64/helm > /usr/local/bin/helm \
     && chmod +x /usr/local/bin/helm \
-    && ln -s /usr/local/bin/helm /usr/local/bin/hm
+    && ln -s /usr/local/bin/helm /usr/local/bin/hm \
+    && wget -q https://github.com/wercker/stern/releases/download/1.10.0/stern_linux_amd64 -O /usr/local/bin/stern \
+    && chmod +x /usr/local/bin/stern
 
 
 RUN mkdir -p /opt/k8s-client && cd /opt/k8s-client \
