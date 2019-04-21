@@ -17,7 +17,7 @@ ENV KUBE_LATEST_VERSION="v1.11.6"
 # https://github.com/kubernetes/helm/releases
 ENV HELM_VERSION="v2.9.1"
 
-##kubectl && helm
+##kubectl && helm ##add: stern kustomize
 RUN apk add --no-cache ca-certificates bash git xterm tmux tree wget curl sed sudo shadow bash-completion ncurses \
     && wget -q https://storage.googleapis.com/kubernetes-release/release/${KUBE_LATEST_VERSION}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl \
@@ -26,7 +26,11 @@ RUN apk add --no-cache ca-certificates bash git xterm tmux tree wget curl sed su
     && chmod +x /usr/local/bin/helm \
     && ln -s /usr/local/bin/helm /usr/local/bin/hm \
     && wget -q https://github.com/wercker/stern/releases/download/1.10.0/stern_linux_amd64 -O /usr/local/bin/stern \
-    && chmod +x /usr/local/bin/stern
+    && chmod +x /usr/local/bin/stern \
+    && wget -q https://github.com/kubernetes-sigs/kustomize/releases/download/v2.0.3/kustomize_2.0.3_linux_amd64 -O /usr/local/bin/kustomize \
+    && chmod +x /usr/local/bin/kustomize
+
+
 
 
 RUN mkdir -p /opt/k8s-client && cd /opt/k8s-client \
