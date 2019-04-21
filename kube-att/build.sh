@@ -3,6 +3,7 @@
 apk add bash xterm tmux tree wget curl sed sudo shadow |grep OK
 
 ##{bin,cnf,cni/bin} err
+##TODO merge to kube-bin
 mkdir -p /down
 cd /down
 	##rbac-lookup
