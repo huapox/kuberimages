@@ -8,7 +8,8 @@ cd /down
 	##k3s
 	#src=https://github.com/rancher/k3s/releases/download/v0.2.0/k3s
 	#src=https://github.com/rancher/k3s/releases/download/v0.4.0/k3s
-	ver=v0.7.0-rc5
+	#ver=v0.7.0-rc5
+	ver=v0.7.0
 	src=https://github.com/rancher/k3s/releases/download/$ver/k3s
 	dest=/down/k3s
 	curl -L $src -o $dest; chmod +x $dest;
