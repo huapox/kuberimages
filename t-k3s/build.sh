@@ -16,6 +16,8 @@ dir=/go/src/github.com/rancher/k3s/
 mkdir -p $dir
 git clone https://github.com/huapox/fk-k3s-master $dir
 cd $dir && ls -lh
+
+apk add --no-cache make
 make
 
 
