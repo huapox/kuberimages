@@ -17,7 +17,7 @@ mkdir -p $dir
 git clone https://github.com/huapox/fk-k3s-master $dir
 cd $dir && ls -lh
 
-#apk add --no-cache make
+apk add --no-cache libseccomp #make
 apk --update --no-cache add --virtual=.build-dependencies #wget ca-certificates
 apk --update --no-cache add openssl-dev build-base linux-headers openssl-dev libstdc++ libgcc
 
