@@ -27,7 +27,7 @@ mkdir -p /go/src/golang.org/x && \
     cd /go/src/golang.org/x && git clone https://github.com/golang/tools && \
     git -C /go/src/golang.org/x/tools checkout -b current aa82965741a9fecd12b026fbb3d3c6ed3231b8f8 && \
     go install golang.org/x/tools/cmd/goimports
-#rm -rf /go/src /go/pkg
+#rm -rf /go/src /go/pkg  ##
 
 
 dir=/go/src/github.com/rancher/k3s/
