@@ -1,0 +1,19 @@
+FROM golang:1.12.1-alpine3.9
+#timeZone
+ENV TIMEZONE Asia/Shanghai
+#lang
+ENV LANG C.UTF-8
+#version
+ENV ver=v1
+
+ADD *.sh /
+RUN sh /build.sh
+
+
+ENV DAPPER_SOURCE /go/src/github.com/rancher/k3s/
+#Add ./* ${DAPPER_SOURCE}
+WORKDIR ${DAPPER_SOURCE}
+
+ENTRYPOINT ["./scripts/entry.sh"]
+CMD ["ci"]
+
