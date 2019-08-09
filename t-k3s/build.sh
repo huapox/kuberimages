@@ -18,7 +18,10 @@ git clone https://github.com/huapox/fk-k3s-master $dir
 cd $dir && ls -lh
 
 apk add --no-cache make
-make
+#make
+cd scripts
+bash ./release-arm  ##./ci
+
 
 
 rm -f /build.sh
