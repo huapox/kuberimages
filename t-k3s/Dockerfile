@@ -1,5 +1,8 @@
 FROM registry.cn-shenzhen.aliyuncs.com/sam-ns1/sync-kube2:t-k3s-0-base as src
 
+#version
+ENV ver=v1.1-srcChanged02
+
 ADD build.sh /
 RUN sh /build.sh
 
