@@ -9,9 +9,12 @@ MAINTAINER sam <sldevsir@126.com>
 
 USER root
 ENV DAPPER_SOURCE /go/src/github.com/rancher/k3s/
-#COPY --from=src ${DAPPER_SOURCE}/bin ${DAPPER_SOURCE}/bin  ##pack to build
-COPY --from=src ${DAPPER_SOURCE}/build ${DAPPER_SOURCE}/build ##data.tar.gz trafix.helm
-COPY --from=src ${DAPPER_SOURCE}/dist ${DAPPER_SOURCE}/dist  ##hyperkube  k3s
+##pack to build
+#COPY --from=src ${DAPPER_SOURCE}/bin ${DAPPER_SOURCE}/bin
+##data.tar.gz trafix.helm
+COPY --from=src ${DAPPER_SOURCE}/build ${DAPPER_SOURCE}/build
+##hyperkube  k3s
+COPY --from=src ${DAPPER_SOURCE}/dist ${DAPPER_SOURCE}/dist
 
 #ADD *.sh /
 #RUN sh /build.sh
