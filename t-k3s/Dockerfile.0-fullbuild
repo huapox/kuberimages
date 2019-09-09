@@ -1,3 +1,4 @@
+##Just full build: no get src;  no lite img size;
 FROM golang:1.12.1-alpine3.9
 #timeZone
 ENV TIMEZONE Asia/Shanghai
@@ -7,6 +8,7 @@ ENV LANG C.UTF-8
 ENV ver=v1
 
 ADD *.sh /
+RUN sh /base.sh
 RUN sh /build.sh
 
 

@@ -1,3 +1,4 @@
+##ff fullBuild: now(base+build) 
 FROM golang:1.12.1-alpine3.9 as src
 #timeZone
 ENV TIMEZONE Asia/Shanghai
@@ -7,6 +8,7 @@ ENV LANG C.UTF-8
 ENV ver=v1
 
 ADD *.sh /
+RUN sh /base.sh
 RUN sh /build.sh
 
 
@@ -18,6 +20,7 @@ RUN sh /build.sh
 #CMD ["ci"]
 
 
+##copy full src
 FROM registry.cn-shenzhen.aliyuncs.com/k-spe/top-alpine
 MAINTAINER sam <sldevsir@126.com>
 

@@ -1,3 +1,4 @@
+##build on baseEnv: 45 seconds save;
 FROM registry.cn-shenzhen.aliyuncs.com/sam-ns1/sync-kube2:t-k3s-0-base as src
 
 #version
@@ -7,6 +8,7 @@ ADD build.sh /
 RUN sh /build.sh
 
 
+##copy dist file: lite images size;
 FROM registry.cn-shenzhen.aliyuncs.com/k-spe/top-alpine
 MAINTAINER sam <sldevsir@126.com>
 
