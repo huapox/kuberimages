@@ -9,7 +9,7 @@ RUN sh /build.sh
 
 
 ##copy dist file: lite images size;
-FROM registry.cn-shenzhen.aliyuncs.com/k-spe/top-alpine
+FROM infrastlabs/alpine-ext
 MAINTAINER sam <sldevsir@126.com>
 
 USER root
