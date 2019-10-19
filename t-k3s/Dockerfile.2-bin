@@ -19,7 +19,7 @@ ENV DAPPER_SOURCE /go/src/github.com/rancher/k3s/
 ##data.tar.gz trafix.helm
 COPY --from=src ${DAPPER_SOURCE}/build/out ${DAPPER_SOURCE}/build/out
 ##hyperkube  k3s
-COPY --from=src ${DAPPER_SOURCE}/dist ${DAPPER_SOURCE}/dist
+COPY --from=src ${DAPPER_SOURCE}/dist/artifacts/k3s ${DAPPER_SOURCE}/dist/artifacts/k3s
 
 #ADD *.sh /
 #RUN sh /build.sh
