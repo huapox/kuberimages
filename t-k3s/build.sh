@@ -11,6 +11,7 @@ git branch -a
 
 #make
 cd scripts
+cat /download-rep > ./download #rep
 #bash ./release-arm  #./ci  #./clean
 bash ./download
 bash ./build

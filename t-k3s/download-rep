@@ -1,0 +1,24 @@
+#!/bin/bash
+
+source $(dirname $0)/version.sh
+
+cd $(dirname $0)/..
+
+ROOT_VERSION=v0.1.1
+TRAEFIK_VERSION=1.64.0
+CHARTS_DIR=build/static/charts
+
+mkdir -p ${CHARTS_DIR}
+
+#curl --compressed -sfL https://github.com/ibuildthecloud/k3s-root/releases/download/${ROOT_VERSION}/k3s-root-${ARCH}.tar | tar xf -
+
+url=https://github.com/rancher/k3s-root/releases/download/v0.1.1/k3s-root-amd64.tar
+##https://github.com/gfk-kube/k3s-root/releases/tag/v0.1.1  ##fork none, down ali-vm1
+curl --compressed -sfL $url | tar xf -
+
+ln -sf pigz bin/unpigz
+mkdir -p bin/aux && rm bin/mount && ln -sf ../busybox bin/aux/mount
+
+##no need traefik, need?
+TRAEFIK_FILE=traefik-${TRAEFIK_VERSION}.tgz
+curl -sfL https://kubernetes-charts.storage.googleapis.com/${TRAEFIK_FILE} -o ${CHARTS_DIR}/${TRAEFIK_FILE}
