@@ -30,4 +30,25 @@ mkdir -p /go/src/golang.org/x && \
 #rm -rf /go/src /go/pkg  ##
 
 
+# ARG DAPPER_HOST_ARCH
+# ENV ARCH $DAPPER_HOST_ARCH
+
+# RUN if [ "${ARCH}" == "amd64" ]; then \
+#         curl -sL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s v1.15.0; \
+#     fi
+
+# ENV DAPPER_RUN_ARGS --privileged -v k3s-cache:/go/src/github.com/rancher/k3s/.cache
+# ENV DAPPER_ENV REPO TAG DRONE_TAG IMAGE_NAME
+# ENV DAPPER_SOURCE /go/src/github.com/rancher/k3s/
+# ENV DAPPER_OUTPUT ./bin ./dist ./build/out
+# ENV DAPPER_DOCKER_SOCKET true
+# ENV HOME ${DAPPER_SOURCE}
+# ENV CROSS true
+# ENV STATIC_BUILD true
+# WORKDIR ${DAPPER_SOURCE}
+
+# ENTRYPOINT ["./scripts/entry.sh"]
+# CMD ["ci"]
+
+
 rm -f /base.sh

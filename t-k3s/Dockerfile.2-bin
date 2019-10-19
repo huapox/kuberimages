@@ -1,8 +1,14 @@
-##build on baseEnv: 45 seconds save;
-FROM registry.cn-shenzhen.aliyuncs.com/sam-ns1/sync-kube2:t-k3s-0-base2 as src
+##build on baseEnv: 45 seconds save; 
+FROM registry.cn-shenzhen.aliyuncs.com/sam-ns1/sync-kube2:t-k3s-0-base as src
 
 #version
 ENV ver=v1.1-srcChanged02
+##add
+#ENV DAPPER_SOURCE /go/src/github.com/rancher/k3s/
+#ENV DAPPER_OUTPUT ./bin ./dist ./build/out
+ENV CROSS true
+ENV STATIC_BUILD true
+# WORKDIR ${DAPPER_SOURCE}
 
 ADD download-rep /
 ADD build.sh /
