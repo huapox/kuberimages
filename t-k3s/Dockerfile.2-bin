@@ -17,7 +17,7 @@ ENV DAPPER_SOURCE /go/src/github.com/rancher/k3s/
 ##pack to build
 #COPY --from=src ${DAPPER_SOURCE}/bin ${DAPPER_SOURCE}/bin
 ##data.tar.gz trafix.helm
-COPY --from=src ${DAPPER_SOURCE}/build ${DAPPER_SOURCE}/build
+COPY --from=src ${DAPPER_SOURCE}/build/out ${DAPPER_SOURCE}/build/out
 ##hyperkube  k3s
 COPY --from=src ${DAPPER_SOURCE}/dist ${DAPPER_SOURCE}/dist
 
