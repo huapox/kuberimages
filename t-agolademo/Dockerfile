@@ -1,0 +1,3 @@
+FROM sorintlab/agolademo:latest
+
+
