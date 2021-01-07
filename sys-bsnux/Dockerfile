@@ -19,7 +19,7 @@ RUN echo "deb https://pkg.bunsenlabs.org/debian lithium main">> /etc/apt/sources
 # COPY ./pkgs-norecs /pkgs-norecs
 # COPY ./pkgs-recs /pkgs-recs
 RUN cd /bin && mv sh sh00 && ln -s /bin/bash sh
-RUN apt update && \
+RUN apt update \
 && apt install -yd bunsen-paper-icon-theme bunsen-images
 # recs=$(sed 's/\#.*$//' pkgs-recs) \
 # && apt -yd install --no-install-recommends "${recs[@]}"
