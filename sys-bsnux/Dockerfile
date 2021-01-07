@@ -7,7 +7,7 @@ RUN domain="mirrors.163.com" \
 
 # rsync 
 RUN apt update \
-  && apt install -y apt-transport-https bash sudo curl wget \
+  && apt install -y apt-transport-https bash sudo curl wget gnupg \
   && apt clean
 
 # COPY ./etc/apt/sources.list.d /etc/apt/sources.list.d
