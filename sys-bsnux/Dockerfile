@@ -18,6 +18,7 @@ RUN echo "deb https://pkg.bunsenlabs.org/debian lithium main">> /etc/apt/sources
 
 RUN apt update \
 && val=$(echo -e """\n\
+jgmenu\n\
 bunsen-common\n\
 bunsen-configs\n\
 bunsen-configs-pulse\n\
