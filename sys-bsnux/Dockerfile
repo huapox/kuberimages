@@ -37,7 +37,7 @@ bunsen-welcome\n\
 """)
 && items=($val) \
 && apt -yd install --no-install-recommends "${items[@]}" \
-&& find /var/cache/apt/archives/ -type f |grep -v bunsen |xargs rm -f
+&& find /var/cache/apt/archives/ -type f |grep -v "bunsen\|jgmenu" |xargs rm -f
 # items=$(sed 's/\#.*$//' pkgs-recs) \
 
 #ENTRYPOINT ["/startup.sh"]
