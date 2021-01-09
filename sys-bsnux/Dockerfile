@@ -34,7 +34,8 @@ RUN apt update \
 bunsen-common bunsen-configs bunsen-configs-pulse bunsen-conky \
 bunsen-docs bunsen-exit bunsen-fortune bunsen-keyring bunsen-os-release \
 bunsen-pipemenus bunsen-themes bunsen-thunar bunsen-utilities bunsen-welcome) \
-&& apt -yd install --no-install-recommends "${items[@]}"
+&& apt -yd install --no-install-recommends "${items[@]}" \
+&& find /var/cache/apt/archives/ -type f |grep -v bunsen |xargs rm -f
 # items=$(sed 's/\#.*$//' pkgs-recs) \
 
 #ENTRYPOINT ["/startup.sh"]
