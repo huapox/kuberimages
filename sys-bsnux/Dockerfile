@@ -34,7 +34,7 @@ bunsen-themes\n\
 bunsen-thunar\n\
 bunsen-utilities\n\
 bunsen-welcome\n\
-""")
+""") \
 && items=($val) \
 && apt -yd install --no-install-recommends "${items[@]}" \
 && find /var/cache/apt/archives/ -type f |grep -v "bunsen\|jgmenu" |xargs rm -f
