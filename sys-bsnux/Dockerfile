@@ -30,7 +30,7 @@ RUN echo "deb https://pkg.bunsenlabs.org/debian lithium main">> /etc/apt/sources
 # && apt -y install --no-install-recommends "${items[@]}"
 
 RUN apt update \
-&& items=$(bunsen-paper-icon-theme bunsen-images \
+&& items=(bunsen-paper-icon-theme bunsen-images \
 bunsen-common bunsen-configs bunsen-configs-pulse bunsen-conky \
 bunsen-docs bunsen-exit bunsen-fortune bunsen-keyring bunsen-os-release \
 bunsen-pipemenus bunsen-themes bunsen-thunar bunsen-utilities bunsen-welcome) \
