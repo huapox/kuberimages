@@ -4,7 +4,6 @@ RUN domain="mirrors.163.com" \
  && echo "deb http://$domain/debian/ buster main contrib non-free" > /etc/apt/sources.list \
  && echo "deb http://$domain/debian/ buster-updates main contrib non-free">> /etc/apt/sources.list
 
-
 # rsync 
 RUN apt update \
   && apt install -y apt-transport-https bash sudo curl wget gnupg \
@@ -17,23 +16,26 @@ RUN wget https://ddl.bunsenlabs.org/ddl/BunsenLabs-RELEASE.asc \
   && sudo apt-key add BunsenLabs-RELEASE.asc
 RUN echo "deb https://pkg.bunsenlabs.org/debian lithium main">> /etc/apt/sources.list
 
-# COPY ./pkgs-norecs /pkgs-norecs
-# COPY ./pkgs-recs /pkgs-recs
-# RUN apt update \
-# && apt install -yd bunsen-paper-icon-theme bunsen-images \
-# && apt install -yd bunsen-common bunsen-configs bunsen-configs-pulse bunsen-conky \
-# bunsen-docs bunsen-exit bunsen-fortune bunsen-keyring bunsen-os-release \
-# bunsen-pipemenus bunsen-themes bunsen-thunar bunsen-utilities bunsen-welcome
-
-# RUN apt update \
-# items=$(sed 's/\#.*$//' pkgs-norecs) \
-# && apt -y install --no-install-recommends "${items[@]}"
-
 RUN apt update \
-&& items=(bunsen-paper-icon-theme bunsen-images \
-bunsen-common bunsen-configs bunsen-configs-pulse bunsen-conky \
-bunsen-docs bunsen-exit bunsen-fortune bunsen-keyring bunsen-os-release \
-bunsen-pipemenus bunsen-themes bunsen-thunar bunsen-utilities bunsen-welcome) \
+&& val=$(echo -e """\n\
+bunsen-common\n\
+bunsen-configs\n\
+bunsen-configs-pulse\n\
+bunsen-conky\n\
+bunsen-docs\n\
+bunsen-exit\n\
+bunsen-fortune\n\
+bunsen-images\n\
+bunsen-keyring\n\
+bunsen-os-release\n\
+bunsen-papirus-icon-theme\n\
+bunsen-pipemenus\n\
+bunsen-themes\n\
+bunsen-thunar\n\
+bunsen-utilities\n\
+bunsen-welcome\n\
+""")
+&& items=($val) \
 && apt -yd install --no-install-recommends "${items[@]}" \
 && find /var/cache/apt/archives/ -type f |grep -v bunsen |xargs rm -f
 # items=$(sed 's/\#.*$//' pkgs-recs) \
