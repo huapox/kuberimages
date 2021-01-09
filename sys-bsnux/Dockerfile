@@ -9,6 +9,7 @@ RUN domain="mirrors.163.com" \
 RUN apt update \
   && apt install -y apt-transport-https bash sudo curl wget gnupg \
   && apt clean
+RUN cd /bin && mv sh sh00 && ln -s /bin/bash sh
 
 # COPY ./etc/apt/sources.list.d /etc/apt/sources.list.d
 # COPY ./etc/apt/trusted.gpg.d /etc/apt/trusted.gpg.d
@@ -18,14 +19,22 @@ RUN echo "deb https://pkg.bunsenlabs.org/debian lithium main">> /etc/apt/sources
 
 # COPY ./pkgs-norecs /pkgs-norecs
 # COPY ./pkgs-recs /pkgs-recs
-RUN cd /bin && mv sh sh00 && ln -s /bin/bash sh
-RUN apt update \
-&& apt install -yd bunsen-paper-icon-theme bunsen-images \
-&& apt install -yd bunsen-common bunsen-configs bunsen-configs-pulse bunsen-conky \
-bunsen-docs bunsen-exit bunsen-fortune bunsen-keyring bunsen-os-release \
-bunsen-pipemenus bunsen-themes bunsen-thunar bunsen-utilities bunsen-welcome
+# RUN apt update \
+# && apt install -yd bunsen-paper-icon-theme bunsen-images \
+# && apt install -yd bunsen-common bunsen-configs bunsen-configs-pulse bunsen-conky \
+# bunsen-docs bunsen-exit bunsen-fortune bunsen-keyring bunsen-os-release \
+# bunsen-pipemenus bunsen-themes bunsen-thunar bunsen-utilities bunsen-welcome
 
-# recs=$(sed 's/\#.*$//' pkgs-recs) \
-# && apt -yd install --no-install-recommends "${recs[@]}"
+# RUN apt update \
+# items=$(sed 's/\#.*$//' pkgs-norecs) \
+# && apt -y install --no-install-recommends "${items[@]}"
+
+RUN apt update \
+&& items=$(bunsen-paper-icon-theme bunsen-images \
+bunsen-common bunsen-configs bunsen-configs-pulse bunsen-conky \
+bunsen-docs bunsen-exit bunsen-fortune bunsen-keyring bunsen-os-release \
+bunsen-pipemenus bunsen-themes bunsen-thunar bunsen-utilities bunsen-welcome) \
+&& apt -yd install --no-install-recommends "${items[@]}"
+# items=$(sed 's/\#.*$//' pkgs-recs) \
 
 #ENTRYPOINT ["/startup.sh"]
